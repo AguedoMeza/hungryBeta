@@ -8,6 +8,7 @@
     session_start(); 
     
     $s_idUsuario = $_SESSION["s_IdUser"];
+    $departamento = $_SESSION["sTipoUsuario"];
 
     $qry = "SELECT proyectos.id, proyectos.nombre_proyecto, productos.nombre, activo
 FROM proyectos 
@@ -33,6 +34,7 @@ and id_usuario_asignado = '$s_idUsuario'";
                                             
                                            
                                             <th scope="col">Ver contenido</th>
+                                            <th scope="col">Estatus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -49,6 +51,16 @@ and id_usuario_asignado = '$s_idUsuario'";
                                            <td align="center">
                                                <a href="formulario_asignar.php?id=<?php echo $row[0] ?>"><i class="fa fa-file-archive-o fa-2x color-icono" aria-hidden="true"></i></a>
                                             </td>
+                                             <?php 
+                                            if($departamento == 2)
+                                             {   
+                                             ?>
+                                            <td align="center">
+                                               <a href="formulario_estatus.php?id=<?php echo $row[0] ?>"><i class="fa fa-thumbs-o-up fa-2x color-icono" aria-hidden="true"></i></a>
+                                            </td>
+                                             <?php 
+                                            }
+                                            ?> 
                                              
                                           
                                         </tr>
