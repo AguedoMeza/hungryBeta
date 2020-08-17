@@ -183,6 +183,10 @@
                                                 <label for="cc-payment" class="control-label mb-1">Nombre del cliente</label>
                                                 <input id="txtNombreCliente" name="txtNombreCliente" type="text" class="form-control" aria-invalid="false" value="" >
                                                 </div>
+                                                 <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">Ubicacion Cliente</label>
+                                                <input id="txtUbicacion" name="txtUbicacion" type="text" class="form-control" aria-invalid="false" value="" placeholder="EJEMPLO FB DANNY LAMP">
+                                            </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Correo</label>
                                                 <input id="txtCorreo" name="txtCorreo" type="text" class="form-control" aria-required="true" aria-invalid="false" value="" >
@@ -191,11 +195,11 @@
                                                 <!-- inicio -->
                                               <label for="id_sucursal">Tipo Poryecto: </label>
                                 
-                                              <select class="form-control" name="departamento" id="departamento" required > <!-- multiple="multiple" -->
+                                              <select class="form-control" name="producto" id="producto" required > <!-- multiple="multiple" -->
                                               <option  value="" disabled selected>Selecciona el tipo de proyecto</option>
                                              <?php 
                                              $result = mysqli_query($conexion, "SELECT id, nombre
-                                             FROM departamentos");
+                                             FROM productos where id_departamento = '$id'");
                                              ?>
                                              <?php
                                               while ($row=mysqli_fetch_array($result))
@@ -222,10 +226,7 @@
                                                 <label for="cc-payment" class="control-label mb-1">Nombre Productora</label>
                                                 <input id="txtNombreProductora" name="txtNombreProductora" type="text" class="form-control" aria-invalid="false" value="" >
                                             </div>
-                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Fecha de entrega</label>
-                                                <input id="fechaEntrega" name="fechaEntrega" type="date" class="form-control"  aria-invalid="false" value="">
-                                            </div>
+                                           
                                                
                                                 
                                                 
@@ -365,14 +366,8 @@ $(document).ready(function(){
     $('#upload_multiple_images').on('submit', function(event){
         event.preventDefault();
         var image_name = $('#image').val();
-        if(image_name == '')
-        {
-            alert("Please Select Image");
-            return false;
-        }
-        else
-        {
-            $.ajax({
+    
+          $.ajax({
                 url:"insert.php",
                 method:"POST",
                 data: new FormData(this),
@@ -391,11 +386,13 @@ $(document).ready(function(){
                     $('#txtDescripcion').val('');
                     $('#enlace').val('');
                     $('#fechaEntrega').val('');
+                    $('#producto').val('');
+                    $('#txtUbicacion').val('');
                     load_images();
                     alert("Has creado el proyecto correctamente");
                 }
             });
-        }
+       
     });
  
 });  

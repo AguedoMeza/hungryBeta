@@ -19,6 +19,8 @@ include '../configuracion/conexion.php';
 	$descripcion=$_POST["txtDescripcion"];
 	$enlace=$_POST["enlace"];
 	$fecha_entrega=$_POST["fechaEntrega"];
+	$producto=$_POST["producto"];
+	$ubicacion=$_POST["txtUbicacion"];
 
 	date_default_timezone_set('America/Monterrey');
 	$fecha=date('Y-m-d');
@@ -34,7 +36,9 @@ include '../configuracion/conexion.php';
 	        descripcion,
 	        fecha_publicacion, 
 	        fecha_entrega, 
-	        activo) 
+	        activo,
+	        id_producto,
+	        ubicacion) 
 	        VALUES (
 	        '$p_id',
 	        '$s_idUsuario',
@@ -47,7 +51,9 @@ include '../configuracion/conexion.php';
 	        '$descripcion',
 	        '$fecha',
 	        '$fecha_entrega',
-	        1)";
+	        1,
+	        '$producto',
+	        '$ubicacion')";
   $statement = $conexion->prepare($qry);
   $statement->execute();
 
