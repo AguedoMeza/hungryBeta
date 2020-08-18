@@ -157,6 +157,7 @@
                                             <th scope="col">Ubicacion</th>
                                             <th scope="col">Fecha</th>
                                             <th scope="col">Usuario Asignado</th>
+                                            <th scope="col">Asignar</th>
 
                                           <!--  <th scope="col">Activo</th> -->
                                              <th scope="col">Abrir</th>
@@ -214,6 +215,9 @@
                                                 ?>
                                                     <?php echo "<input type='checkbox' id='status' $valor onclick='OnChangeCheckbox (this)' data-id='$row[0]'/>"; ?>
                                             </td> -->
+                                         <td align="center">
+                                           <a href="formulario_editar.php?id=<?php echo $row[0] ?>"><i class="fa fa-pencil-square-o fa-2x color-icono" aria-hidden="true"></i></a>
+                                         </td> 
                                              
                                            <td align="center">
                                                <a href="#"><i id="<?php echo $row[0] ?>" class="fa fa-file-image-o fa-2x color-icono view_data" aria-hidden="true"></i></a>
