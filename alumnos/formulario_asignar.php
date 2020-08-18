@@ -219,8 +219,11 @@
                                                     <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
                                                 </div>
                                               
-                                             
-                                                 
+                                              <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">Nombre Productora</label>
+                                                <input id=" txtDescripcion" name=" txtDescripcion" type="text" class="form-control" aria-invalid="false" value="<?php echo $row[4] ?>" >
+                                            </div>
+                                               
                                                
                                                </form>
 
