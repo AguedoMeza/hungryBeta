@@ -212,12 +212,10 @@
                                                 
                                                 
                                                 
-                                                
-                                                 <div class="form-group">
-                                                    <label for="cc-number" class="control-label mb-1">Descripcion</label>
-                                                    <textarea id="txtDescripcion" name="txtDescripcion" type="text" class="form-control cc-number identified visa" value="<?php echo $row[6] ?>" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number" ></textarea>
-                                                    <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
-                                                </div>
+                                                <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">Descripcion</label>
+                                                <input id=" txtDescripcion" name=" txtDescripcion" type="text" class="form-control" aria-invalid="false" value="<?php echo $row[6] ?>" >
+                                            </div>
                                               
                                               <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Nombre Productora</label>
