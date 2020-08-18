@@ -390,6 +390,7 @@ $(document).ready(function(){
                     $('#txtUbicacion').val('');
                     load_images();
                     alert("Has creado el proyecto correctamente");
+                    window.location="indexMaestroContenido.php";
                 }
             });
        

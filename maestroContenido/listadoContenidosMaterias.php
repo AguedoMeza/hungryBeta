@@ -33,6 +33,13 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <script src="../plugins/sweetalert2-master/dist/sweetalert2.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
+           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+
+   
+   
 
 </head>
 
@@ -129,7 +136,7 @@
     
     $s_idUsuario = $_SESSION["s_IdUser"];
 
-    $qry = "SELECT proyectos.id, nombre_proyecto, descripcion, fecha_entrega, usuarios.usuario, proyectos.activo 
+    $qry = "SELECT proyectos.id, cliente, ubicacion, fecha_publicacion, usuarios.usuario, proyectos.activo, id_usuario_asignado, estatus
     FROM proyectos
     LEFT JOIN usuarios
     on usuarios.id = proyectos.id_usuario_asignado
@@ -146,12 +153,13 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Nombre</th>
-                                            <th scope="col">Descripcion</th>
-                                            <th scope="col">Entrega</th>
-                                            <th scope="col">Asignacion</th>
+                                            <th scope="col">Cliente</th>
+                                            <th scope="col">Ubicacion</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Usuario Asignado</th>
+
                                           <!--  <th scope="col">Activo</th> -->
-                                          <!--  <th scope="col">Editar</th> -->
+                                             <th scope="col">Abrir</th>
                                              <th scope="col">Eliminar</th> 
                                         </tr>
                                     </thead>
@@ -160,7 +168,34 @@
                                        while($row = mysqli_fetch_array($consulta))
                                         {   
                                     ?>
-                                        <tr>
+                                    <?php 
+                                        if($row[6] == '')
+                                        {   
+                                    ?>
+                                        <tr bgcolor="#f1c40f">
+                                    <?php 
+                                       
+                                        }
+                                        else if($row[6] != '' && $row[7] == '')
+                                        {
+                                    ?>
+                                      <tr bgcolor="#e74c3c">
+
+                                    <?php 
+                                       
+                                        }
+                                        else if($row[7] == 1)
+                                        {
+                                       
+                                    ?>
+                                      <tr bgcolor="#2ecc71">
+
+                                    <?php 
+                                       
+                                        }
+                                       
+                                       
+                                    ?>
                                             <th scope="row"><?php echo $row[0]; ?></th>
                                             <td><?php echo $row[1]; ?></td>
                                             <td><?php echo $row[2]; ?></td>
@@ -180,9 +215,9 @@
                                                     <?php echo "<input type='checkbox' id='status' $valor onclick='OnChangeCheckbox (this)' data-id='$row[0]'/>"; ?>
                                             </td> -->
                                              
-                                           <!-- <td align="center">
-                                               <a href="formulario_editar.php?id=<?php echo $row[0] ?>"><i class="fa fa-pencil-square-o fa-2x color-icono" aria-hidden="true"></i></a>
-                                            </td> -->
+                                           <td align="center">
+                                               <a href="#"><i id="<?php echo $row[0] ?>" class="fa fa-file-image-o fa-2x color-icono view_data" aria-hidden="true"></i></a>
+                                            </td>
                                              <td><a href="ejecutar_eliminar.php?id=<?php echo $row[0] ?>"><i class="fa fa fa-ban fa-2x color-icono" aria-hidden="true"></i></a></td> 
                                         </tr>
                                     <?php 
@@ -243,19 +278,43 @@
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
+     <div id="dataModal" class="modal fade">  
+      <div class="modal-dialog">  
+           <div class="modal-content">  
+                <div class="modal-header">  
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                     <h4 class="modal-title">Project Details</h4>  
+                </div>  
+                <div class="modal-body" id="employee_detail">  
+                </div>  
+                <div class="modal-footer">  
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                </div>  
+           </div>  
+      </div>  
+ </div>  
+ 
 
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <script src="../vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+   
 
+   
 
-    <script src="../vendors/chart.js/dist/Chart.bundle.min.js"></script>
-    <script src="../assets/js/dashboard.js"></script>
-    <script src="../assets/js/widgets.js"></script>
-    <script src="../vendors/jqvmap/dist/jquery.vmap.min.js"></script>
-    <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-    <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+     <script>  
+ $(document).ready(function(){  
+      $('.view_data').click(function(){  
+           var employee_id = $(this).attr("id");  
+           $.ajax({  
+                url:"data.php",  
+                method:"post",  
+                data:{employee_id:employee_id},  
+                success:function(data){  
+                     $('#employee_detail').html(data);  
+                     $('#dataModal').modal("show");  
+                }  
+           });  
+      });  
+ });  
+ </script>
     <script>
         (function($) {
             "use strict";
