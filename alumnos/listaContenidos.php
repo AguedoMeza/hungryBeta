@@ -22,7 +22,7 @@ and id_usuario_asignado = '$s_idUsuario'";
         <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Listado de Proyectos</strong>
+                                <strong class="card-title">Listado de Proyectos Prueba</strong>
                             </div>
                             <div class="card-body">
                                 <table class="table">
