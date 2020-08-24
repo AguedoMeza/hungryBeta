@@ -29,6 +29,6 @@
 		
 	$actualizar = mysqli_query($conexion,$qry) or die (mysql_error());
 	
-	echo"<script language=\"javascript\">window.location=\"indexMaestroContenido.php\" </script>";
+	echo"<script language=\"javascript\">window.location=\"indexSuper.php\" </script>";
 
 ?>

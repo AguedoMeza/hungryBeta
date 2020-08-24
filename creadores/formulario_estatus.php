@@ -2,8 +2,8 @@
         include '../configuracion/conexion.php';
         $idProyecto = $_GET["id"];
                             
-        $qry = "SELECT id, nombre_artista, nombre_artista2, nombre_proyecto, nombre_productora, fecha_entrega, descripcion FROM proyectos
-                WHERE id = '$idProyecto'";
+        $qry = "SELECT id, nombre FROM departamentos 
+                WHERE id = '$id'";
                             
                                     
         $consulta = mysqli_query($conexion,$qry);
@@ -44,9 +44,7 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <script src="../plugins/sweetalert2-master/dist/sweetalert2.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
-           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
-           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    <script src="../jquery-3.2.1.min.js"></script>
 
    
    
@@ -123,7 +121,14 @@
 
         <div class="content mt-3">
 
-            
+            <div class="col-sm-12">
+                <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                    Cambio de Estatus.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
 
 
           
@@ -153,7 +158,7 @@
                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Detalle del Proyecto</strong>
+                                
                             </div>
                             <div class="card-body">
                                
@@ -162,66 +167,53 @@
                                       
                                         <hr>
                                         <form method="post" id="upload_multiple_images" enctype="multipart/form-data">
-                                                
-                                                <div class="form-group">
-                                              
-                                                 <?php 
-                                                   include '../configuracion/conexion.php';
-                                                   $qry = "SELECT id, imagen FROM imagenes WHERE id_proyecto = '$idProyecto'";
-                                                   $consulta = mysqli_query($conexion, $qry);
-                                                 ?>
+                                                 <div>
                                                     
-                                                 <?php 
-                                                    while($row2 = mysqli_fetch_array($consulta))
-                                                      {   ?>
-                                                         <a href="#"><i id="<?php echo $row2[0] ?>" class="fa fa-file-image-o fa-2x color-icono view_data" aria-hidden="true"></i></a>
+                                                     <input type="submit" name="insert" id="insert" value="Cambiar Estatus" class="btn btn-lg btn-info btn-block" />
 
-                                                 <?php 
-                                                      }
-                                                 ?>
-    
-
-
-                                           
+                                                      
+                                                       
                                                 </div>
-                                                
 
-                                               
-                                            
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Nombre Artista</label>
-                                                <input id="txtArtista" name="txtArtista" type="text" class="form-control" aria-required="true" aria-invalid="false" value="<?php echo $row[1] ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Nombre Artista Coloborador(No requerido)</label>
-                                                <input id="txtColoborador" name="txtColoborador" type="text" class="form-control"  aria-invalid="false" value="<?php echo $row[2] ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Nombre del proyecto</label>
-                                                <input id="txtNombreProyecto" name="txtNombreProyecto" type="text" class="form-control"  aria-invalid="false" value="<?php echo $row[3] ?>" >
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Nombre Productora</label>
-                                                <input id="txtNombreProductora" name="txtNombreProductora" type="text" class="form-control" aria-invalid="false" value="<?php echo $row[4] ?>" >
-                                            </div>
-                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Fecha de entrega</label>
-                                                <input id="fechaEntrega" name="fechaEntrega" type="date" class="form-control"  aria-invalid="false" value="<?php echo $row[5] ?>">
-                                            </div>
-                                               
-                                                
-                                                
-                                                
+                                                <input type="text" class="form-control" id="idProyecto" name="idProyecto" value="<?php echo $idProyecto ?>" style="visibility:hidden">
+                                            </div> 
+                                          
                                                 <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Descripcion</label>
-                                                <input id=" txtDescripcion" name=" txtDescripcion" type="text" class="form-control" aria-invalid="false" value="<?php echo $row[6] ?>" >
-                                            </div>
+                                                <input id="txtDescripcion" name="txtDescripcion" type="text" class="form-control" aria-invalid="false" value="" >
+                                                </div>
+                                                 
+                                            
+                                            <div class="form-group">
+                                                <!-- inicio -->
+                                              <label for="id_sucursal">Tipo Estatus: </label>
+                                
+                                              <select class="form-control" name="estatus" id="estatus" required > <!-- multiple="multiple" -->
+                                              <option  value="" disabled selected>Selecciona el tipo de Estatus del Proyecto</option>
+                                              <option value='1'>Sketch</option>
+                                              <option value='2'>Line Art</option>
+                                              <option value='3'>Color</option>
                                               
-                                              <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Nombre Productora</label>
-                                                <input id=" txtDescripcion" name=" txtDescripcion" type="text" class="form-control" aria-invalid="false" value="<?php echo $row[4] ?>" >
+                                             </select>
+                                                <!-- fin -->
                                             </div>
+                                         
+                                           
                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                              
+                                               <div class="form-group has-success">
+                                                
+                                                <input type="file" name="image[]" id="image" multiple accept=".jpg, .png, .gif" />
+                                                <br />
+
+                                               </div>
+                                                 
                                                
                                                </form>
 
@@ -238,8 +230,23 @@
                         </div> <!-- .card -->
             </div>
             
-            <!--/.col-->
-
+            <!-- modal -->
+            <div id="dataModal" class="modal fade">  
+      <div class="modal-dialog">  
+           <div class="modal-content">  
+                <div class="modal-header">  
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                     <h4 class="modal-title">Employee Details</h4>  
+                </div>  
+                <div class="modal-body" id="employee_detail">  
+                </div>  
+                <div class="modal-footer">  
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                </div>  
+           </div>  
+      </div>  
+ </div>  
+  
             
 
 
@@ -260,32 +267,27 @@
 
         </div> <!-- .content -->
     </div><!-- /#right-panel -->
-    <!-- Modal image preview  -->
-    <div id="dataModal" class="modal fade">  
-      <div class="modal-dialog">  
-           <div class="modal-content">  
-                <div class="modal-header">  
-                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                     <h4 class="modal-title">Employee Details</h4>  
-                </div>  
-                <div class="modal-body" id="employee_detail">  
-                </div>  
-                <div class="modal-footer">  
-                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
-                </div>  
-           </div>  
-      </div>  
- </div>  
- 
 
-   
+    <!-- Right Panel -->
 
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../assets/js/main.js"></script>
+
+
+    <script src="../vendors/chart.js/dist/Chart.bundle.min.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+    <script src="../assets/js/widgets.js"></script>
+    <script src="../vendors/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
     <script>  
  $(document).ready(function(){  
       $('.view_data').click(function(){  
            var employee_id = $(this).attr("id");  
            $.ajax({  
-                url:"fetch_images.php",  
+                url:"select.php",  
                 method:"post",  
                 data:{employee_id:employee_id},  
                 success:function(data){  
@@ -333,14 +335,8 @@ $(document).ready(function(){
     $('#upload_multiple_images').on('submit', function(event){
         event.preventDefault();
         var image_name = $('#image').val();
-        if(image_name == '')
-        {
-            alert("Please Select Image");
-            return false;
-        }
-        else
-        {
-            $.ajax({
+    
+          $.ajax({
                 url:"insert.php",
                 method:"POST",
                 data: new FormData(this),
@@ -350,26 +346,19 @@ $(document).ready(function(){
                 success:function(data)
                 {
                     $('#image').val('');
-                    $('#txtNombreCliente').val('');
-                    $('#txtCorreo').val('');
-                    $('#txtArtista').val('');
-                    $('#txtColoborador').val('');
-                    $('#txtNombreProyecto').val('');
-                    $('#txtNombreProductora').val('');
                     $('#txtDescripcion').val('');
-                    $('#enlace').val('');
-                    $('#fechaEntrega').val('');
+                    $('#estatus').val('');
+                    $('#idProyecto').val('');
                     load_images();
-                    alert("Has creado el proyecto correctamente");
+                    alert("Has cambiado el estatus de tu proyecto correctamente");
+                    window.location="indexCreadores.php";
                 }
             });
-        }
+       
     });
  
 });  
 </script>
-
-<!-- Have fun using Bootstrap JS -->
 
 
    
