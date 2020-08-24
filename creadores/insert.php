@@ -65,9 +65,7 @@ include '../configuracion/conexion.php';
 
       
        
-        $qry2 = "INSERT INTO imagenes (imagen,id_proyecto,tipo) VALUES (('$image_file'),(SELECT id
-FROM proyectos
-ORDER BY id DESC LIMIT 1),'$image_tipo')";
+        $qry2 = "INSERT INTO imagenes (imagen,id_proyecto,tipo) VALUES (('$image_file'),$proyecto,'$image_tipo')";
 
 		  $statement2 = $conexion->prepare($qry2);
 		  $statement2->execute();
