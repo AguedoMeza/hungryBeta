@@ -3,16 +3,31 @@
  {  
       $output = '';  
       $connect = mysqli_connect("213.190.6.169", "u641609375_SYEBEL", "555Cma621", "u641609375_SYEBEL");  
-      $query = "SELECT cliente, ubicacion, correo, productos.nombre, nombre_artista, nombre_artista2, nombre_proyecto, nombre_productora, descripcion
+      $query = "SELECT cliente, ubicacion, correo, productos.nombre, nombre_artista, nombre_artista2, nombre_proyecto, nombre_productora, descripcion, estatus_ilustrador
         FROM proyectos 
         INNER JOIN productos ON productos.id = proyectos.id_producto
         WHERE proyectos.id = '".$_POST["employee_id"]."'";  
-      $result = mysqli_query($connect, $query);  
+      $result = mysqli_query($connect, $query); 
+     
       $output .= '  
       <div class="table-responsive">  
            <table class="table table-bordered">';  
       while($row = mysqli_fetch_array($result))  
       {  
+            $estatus = '';
+            if($row[9] == 3)
+            {
+              $estatus = 'Color';
+            } 
+            else if($row[9] == 2)
+            {
+              $estatus = 'Line Art';
+            }
+             else if($row[9] == 1)
+            {
+              $estatus = 'Sketch';
+            }
+
            $output .= '  
                 <tr>  
                      <td width="30%"><label>Cliente</label></td>  
@@ -50,9 +65,19 @@
                      <td width="30%"><label>Descripcion</label></td>  
                      <td width="70%">'.$row[8].'</td>  
                 </tr> 
+                 <tr>  
+                     <td width="30%"><label>Estatus del Proyecto</label></td>  
+                     <td width="70%">'.$estatus.'</td>  
+                </tr> 
+                
                 ';  
       }  
       $output .= "</table></div>";  
+        $output .= '
+        
+          <img src="data:image/(gif|png|jpeg);base64,'.base64_encode($row['imagen'] ).'" class="img-thumbnail" >
+        ';
+        $output .= '</img>';
       echo $output;  
  }  
  ?>
