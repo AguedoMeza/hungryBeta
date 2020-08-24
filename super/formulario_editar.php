@@ -172,7 +172,7 @@
                                               <option  value="" disabled selected>Selecciona al Usuario</option>
                                              <?php 
                                              $result = mysqli_query($conexion, "SELECT id, usuario
-                                             FROM usuarios WHERE activo=1 AND id_departamento = '$departamento'");
+                                             FROM usuarios WHERE activo=1");
                                              ?>
                                              <?php
                                               while ($row=mysqli_fetch_array($result))
