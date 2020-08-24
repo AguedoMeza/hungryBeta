@@ -173,14 +173,14 @@
                                         if($row[6] == '')
                                         {   
                                     ?>
-                                        <tr bgcolor="#f1c40f">
+                                        <tr class="table-danger">
                                     <?php 
                                        
                                         }
                                         else if($row[6] != '' && $row[7] == '')
                                         {
                                     ?>
-                                      <tr bgcolor="#e74c3c">
+                                      <tr class="table-warning">
 
                                     <?php 
                                        
@@ -189,7 +189,7 @@
                                         {
                                        
                                     ?>
-                                      <tr bgcolor="#2ecc71">
+                                      <tr class="table-success">
 
                                     <?php 
                                        
