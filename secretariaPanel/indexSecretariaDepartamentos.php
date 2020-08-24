@@ -1,19 +1,3 @@
-<?php
-        include '../configuracion/conexion.php';
-        $id = $_GET["id"];
-                            
-        $qry = "SELECT id, nombre, fecha_cierre, enlace, descripcion FROM contenidos
-                WHERE id = '$id'";
-                            
-                                    
-        $consulta = mysqli_query($conexion,$qry);
-                                    
-        $row=mysqli_fetch_row($consulta);
-
-        $id=$row[0];
-?>
-
-
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -63,12 +47,21 @@
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
-                <ul class="nav navbar-nav">
+              <!--  <ul class="nav navbar-nav">
                     <li class="active">
                         <a href="indexMaestroContenido.php"> <i class="menu-icon fa fa-dashboard"></i>Panel de Maestro </a>
                     </li>
-                    
-                </ul>
+                     <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Formularios</a>
+                        <ul class="sub-menu children dropdown-menu">
+                          
+                            <li><i class="fa fa-bars"></i><a href="indexMaestroContenido.php">Contenidos</a></li>
+                            <li><i class="fa fa-bars"></i><a href="../maestro/indexMaestro.php">Creacion de Materias</a></li>
+                            <li><i class="fa fa-bars"></i><a href="../maestroAlumnos/indexAlumnos.php">Creacion de Usuarios</a></li>
+                             
+                        </ul>
+                    </li>
+                </ul> -->
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside><!-- /#left-panel -->
@@ -94,7 +87,7 @@
             <div class="col-sm-8">
                 <div class="page-header float-right">
                     <div class="page-title">
-                         <ol class="breadcrumb text-right">
+                        <ol class="breadcrumb text-right">
                             
             <a href="../login/cerrarsesion.php" class="btn btn-danger"><li class="active">CERRAR SESION</li></a>
                         </ol>
@@ -107,7 +100,7 @@
 
             <div class="col-sm-12">
                 <div class="alert  alert-success alert-dismissible fade show" role="alert">
-                    <span class="badge badge-pill badge-success">Victor Salomon</span> Listado de Materias.
+                     Listado de Departamentos.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -115,7 +108,13 @@
             </div>
 
 
-          
+           <?php 
+              include 'listaDepartamentos.php';
+            ?>
+
+             <?php 
+             // include 'listaContenidos.php';
+            ?>
             <!--/.col-->
 
            
@@ -138,65 +137,11 @@
             
             <!--Formulario-->
 
-            <div class="col-xl-12">
-                   <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Asignacion de Contenido a <?php echo $row[1]; ?></strong>
-                            </div>
-                            <div class="card-body">
-                               
-                                <div id="pay-invoice">
-                                    <div class="card-body">
-                                      
-                                        <hr>
-                                        <form action="ejecutar_editar.php" method="POST" id="formulario" enctype="multipart/form-data">
-                                             <div>
-                                                    <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                                      
-                                                        <span id="payment-button-amount">Editar Contenido</span>
-                                                        <span id="payment-button-sending" style="display:none;">Sending…</span>
-                                                    </button>
-                                                </div>
-
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="id" name="id" value="<?php echo $row[0] ?>" style="visibility:hidden">
-                                            </div> 
-                                           
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Nombre del proyecto</label>
-                                                <input id="txtNombre" name="txtNombre" type="text" class="form-control" aria-required="true" aria-invalid="false"  value="<?php echo $row[1] ?>">
-                                            </div>
-                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Fecha de entrega</label>
-                                                <input id="fechaEntrega" name="fechaEntrega" type="date" class="form-control" aria-required="true" aria-invalid="false"  value="<?php echo $row[2] ?>">
-                                            </div>
-                                                <div class="form-group has-success">
-                                                  
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="cc-number" class="control-label mb-1">Enlace Externo</label>
-                                                    <input id="enlace" name="enlace" type="text" class="form-control cc-number identified visa"  value="<?php echo $row[3] ?>" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
-                                                    <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
-                                                </div>
-                                                 <div class="form-group">
-                                                    <label for="cc-number" class="control-label mb-1">Descripcion</label>
-                                                    <input id="txtDescripcion" name="txtDescripcion" type="text" class="form-control cc-number identified visa"  value="<?php echo $row[1] ?>" data-val="true" data-val-required="Please enter the card number" data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
-                                                    <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
-                                                </div>
-                                              
-                                               
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div> <!-- .card -->
-            </div>
+          
             
             <!--/.col-->
 
-            
+           
 
 
            
@@ -248,6 +193,31 @@
                 normalizeFunction: 'polynomial'
             });
         })(jQuery);
+    </script>
+
+    <script type="text/javascript">
+        function OnChangeCheckbox (checkbox) {
+            ajax = function(url){
+                var xhr = window.XMLHttpRequest ? 
+                          new XMLHttpRequest() : 
+                          new ActiveXObject("Microsoft.XMLHTTP") || 
+                          new ActiveXObject("Msxml2.XMLHTTP");
+         
+                xhr.open("GET", url, true);
+                xhr.send(null);
+            };
+        var estado = checkbox.checked ? 1 : 0, //Si está marcado, asigno 1 a 'estado', si no, 0
+        id = checkbox.getAttribute("data-id"), //El valor del pseudo-atributo 'data-id'
+        url = "editar_estado.php?estado=" + estado + "&id=" + id;
+        ajax(url); 
+
+        if (estado==0) {
+            alert("El registro se ha desactivado");
+        };
+        if (estado==1) {
+            alert("El registro ha sido activado");
+        };
+        }
     </script>
 
 </body>

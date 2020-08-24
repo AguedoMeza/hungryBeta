@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -49,23 +47,25 @@
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
-                <ul class="nav navbar-nav">
+             <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Panel de Maestro </a>
+                        <a href="indexDirector.php"> <i class="menu-icon fa fa-dashboard"></i>Panel de Super Usuario </a>
                     </li>
-                    <h3 class="menu-title">Administracion</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Formularios</a>
-                       <ul class="sub-menu children dropdown-menu">
+                        <ul class="sub-menu children dropdown-menu">
                           
-                            <li><i class="fa fa-bars"></i><a href="../maestroContenido/indexMaestroContenido.php">Contenidos</a></li>
-                            <li><i class="fa fa-bars"></i><a href="indexMaestro.php">Creacion de Materias</a></li>
-                            <li><i class="fa fa-bars"></i><a href="../maestroAlumnos/indexAlumnos.php">Creacion de Usuarios</a></li>
-                             
+                           
+                            <li><i class="fa fa-bars"></i><a href="../altaDocentes/index.php">Crear Usuario</a></li>
+
+                            
+                        
+                          
                         </ul>
                     </li>
                     
                 </ul>
+            </div><!-- /.navbar-collapse -->
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside><!-- /#left-panel -->
@@ -91,7 +91,7 @@
             <div class="col-sm-8">
                 <div class="page-header float-right">
                     <div class="page-title">
-                         <ol class="breadcrumb text-right">
+                        <ol class="breadcrumb text-right">
                             
             <a href="../login/cerrarsesion.php" class="btn btn-danger"><li class="active">CERRAR SESION</li></a>
                         </ol>
@@ -104,7 +104,7 @@
 
             <div class="col-sm-12">
                 <div class="alert  alert-success alert-dismissible fade show" role="alert">
-                    <span class="badge badge-pill badge-success">Victor Salomon</span> Listado de Alumnos
+                     Listado de Departamentos.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -113,17 +113,21 @@
 
 
            <?php 
-              include 'listaAlumnos.php';
+              include 'listaDepartamentos.php';
+            ?>
+
+             <?php 
+             // include 'listaContenidos.php';
             ?>
             <!--/.col-->
 
            
             <!--/.col-->
 
-            
+           
             <!--/.col-->
 
-           
+            
             <!--/.col-->
 
           
@@ -135,79 +139,14 @@
 
 
             
-            <!--/.col-->
+            <!--Formulario-->
 
-
+          
             
             <!--/.col-->
 
-            <div class="col-xl-12">
-                 <div class="col-xl-12">
-                   <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Alta de alumnos</strong>
-                            </div>
-                            <div class="card-body">
-                                <!-- Credit Card -->
-                                <div id="pay-invoice">
-                                    <div class="card-body">
-                                      
-                                        <hr>
-                                        <form action="ejecutar_alta.php" method="POST" id="formulario">
-                                             <div>
-                                                    <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                                      
-                                                        <span id="payment-button-amount">Crear Alumno</span>
-                                                        <span id="payment-button-sending" style="display:none;">Sending…</span>
-                                                    </button>
-                                                </div>
-                                           
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Nombre del Alumno</label>
-                                                <input id="txtGrupo" name="txtNombre" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Nombre de Usuario</label>
-                                                <input id="txtUsuario" name="txtUsuario" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
-                                            </div>
-                                             <div class="form-group">
-                                                <!-- inicio -->
-                                              <label for="id_sucursal">Grupo: </label>
-                                
-                                              <select class="form-control" name="id_grupo" id="id_grupo" required > <!-- multiple="multiple" -->
-                                              <option  value="" disabled selected>Selecciona el Grupo</option>
-                                             <?php 
-                                             $result = mysqli_query($conexion, "SELECT id, nombre
-                                             FROM grupos WHERE activo=1");
-                                             ?>
-                                             <?php
-                                              while ($row=mysqli_fetch_array($result))
-                                               {
-                                                 echo "<option value='$row[0]'>$row[1]</option>";
-                                               }
-                                             ?>
-                                             </select>
-                                                <!-- fin -->
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Contrasena</label>
-                                                <input id="txtPass" name="txtPass" type="password" class="form-control" aria-required="true" aria-invalid="false" value="">
-                                            </div>
-                                          
-                                               
-                                                
-                                              
-                                               
-                                        </form>
-                                    </div>
-                                </div>
+           
 
-                            </div>
-                        </div> <!-- .card -->
-            </div>
-            
-            </div>
 
            
 
@@ -259,6 +198,7 @@
             });
         })(jQuery);
     </script>
+
     <script type="text/javascript">
         function OnChangeCheckbox (checkbox) {
             ajax = function(url){
@@ -283,7 +223,6 @@
         };
         }
     </script>
-
 
 </body>
 

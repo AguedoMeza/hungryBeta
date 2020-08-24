@@ -8,7 +8,7 @@ session_start();
 $s_idUsuario = $_SESSION["s_IdUser"];
 
 
-    $qry = "SELECT id, nombre FROM grupos";
+    $qry = "SELECT id, nombre FROM departamentos WHERE id in (2,3,4)";
 
     $consulta = mysqli_query($conexion, $qry);
  ?>
@@ -26,8 +26,8 @@ $s_idUsuario = $_SESSION["s_IdUser"];
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <div class="dropdown-menu-content">
 
-                                            <a href="formulario_asignar.php?id=<?php echo $row[0] ?>" class="dropdown-item"><i aria-hidden="true">Asignar Tarea</i></a>
-                                             <a href="listadoContenidosMaterias.php?id=<?php echo $row[0] ?>" class="dropdown-item"><i aria-hidden="true">Ver Contenidos</i></a>
+                                            <a href="formulario_asignar.php?id=<?php echo $row[0] ?>" class="dropdown-item"><i aria-hidden="true">Crear Proyecto</i></a>
+                                             <a href="listadoPorDepartamento.php?id=<?php echo $row[0] ?>" class="dropdown-item"><i aria-hidden="true">Ver Proyectos Sin Asignar</i></a>
                                             
                                     
                                         </div>

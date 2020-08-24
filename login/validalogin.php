@@ -31,16 +31,16 @@ if($num==1)
 	{
 		//header("Location: ../director/indexDirector.php");
 		//header("Location: ../maestroContenido/indexMaestroContenido.php");
-		header("Location: ../super/indexMaestroContenido.php");
+		header("Location: ../super/indexSuper.php");
 
 	}
 	else if ($tipo == 1) 
 	{
-		header("Location: ../maestroContenido/indexMaestroContenido.php");
+		header("Location: ../secretariaPanel/indexSecretariaDepartamentos.php");
 	}
 	else if ($tipo == 2 || $tipo == 3 || $tipo == 4 ) 
 	{
-		header("Location: ../alumnos/indexAlumnos.php");
+		header("Location: ../creadores/indexCreadores.php");
 	}
 	
 	
