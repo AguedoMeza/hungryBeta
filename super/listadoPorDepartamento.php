@@ -136,7 +136,7 @@
     
     $s_idUsuario = $_SESSION["s_IdUser"];
 
-    $qry = "SELECT proyectos.id, cliente, ubicacion, fecha_publicacion, usuarios.usuario, proyectos.activo, id_usuario_asignado, estatus
+    $qry = "SELECT proyectos.id, cliente, ubicacion, nombre_proyecto, fecha_publicacion, usuarios.usuario, proyectos.activo, id_usuario_asignado, estatus
     FROM proyectos
     LEFT JOIN usuarios
     on usuarios.id = proyectos.id_usuario_asignado
@@ -155,6 +155,7 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Cliente</th>
                                             <th scope="col">Ubicacion</th>
+                                            <th scope="col">Titulo Proyecto</th>
                                             <th scope="col">Fecha</th>
                                             <th scope="col">Usuario Asignado</th>
                                             <th scope="col">Asignar</th>
@@ -170,14 +171,14 @@
                                         {   
                                     ?>
                                     <?php 
-                                        if($row[6] == '')
+                                        if($row[7] == '')
                                         {   
                                     ?>
                                         <tr class="table-danger">
                                     <?php 
                                        
                                         }
-                                        else if($row[6] != '' && $row[7] == '')
+                                        else if($row[7] != '' && $row[8] == '')
                                         {
                                     ?>
                                       <tr class="table-warning">
@@ -185,7 +186,7 @@
                                     <?php 
                                        
                                         }
-                                        else if($row[7] == 1)
+                                        else if($row[8] == 1)
                                         {
                                        
                                     ?>
@@ -202,6 +203,7 @@
                                             <td><?php echo $row[2]; ?></td>
                                             <td><?php echo $row[3]; ?></td>
                                             <td><?php echo $row[4]; ?></td>
+                                            <td><?php echo $row[5]; ?></td>
                                              
                                          <!--   <td align="center">
 
