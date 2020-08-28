@@ -7,7 +7,15 @@
         FROM proyectos 
         INNER JOIN productos ON productos.id = proyectos.id_producto
         WHERE proyectos.id = '".$_POST["employee_id"]."'";  
-      $result = mysqli_query($connect, $query); 
+      
+       $query2 = "SELECT imagen, tipo FROM imagenes 
+        WHERE tipo in (1,2,3)
+        AND id_proyecto = '".$_POST["employee_id"]."'";  
+
+
+       $result = mysqli_query($connect, $query); 
+
+       $result2 = mysqli_query($connect, $query2); 
      
       $output .= '  
       <div class="table-responsive">  
@@ -73,11 +81,14 @@
                 ';  
       }  
       $output .= "</table></div>";  
+      while($row2 = mysqli_fetch_array($result2))  
+      { 
         $output .= '
         
-          <img src="data:image/(gif|png|jpeg);base64,'.base64_encode($row['imagen'] ).'" class="img-thumbnail" >
+          <img src="data:image/(gif|png|jpeg);base64,'.base64_encode($row2[0] ).'" class="img-thumbnail" >
         ';
         $output .= '</img>';
+      }
       echo $output;  
  }  
  ?>
