@@ -1,6 +1,7 @@
 <?php  
  if(isset($_POST["employee_id"]))  
  {  
+      $filtro = $_POST["employee_id"];
       $output = '';  
       $connect = mysqli_connect("213.190.6.169", "u641609375_SYEBEL", "555Cma621", "u641609375_SYEBEL");  
       $query = "SELECT cliente, ubicacion, correo, productos.nombre, nombre_artista, nombre_artista2, nombre_proyecto, nombre_productora, descripcion, estatus_ilustrador
@@ -9,7 +10,7 @@
         WHERE proyectos.id = '".$_POST["employee_id"]."'";  
       
        $query2 = "SELECT imagen, tipo FROM imagenes 
-        WHERE tipo in (1,2,3)
+        WHERE tipo = (SELECT estatus_ilustrador FROM proyectos WHERE id = '$filtro' LIMIT 1)
         AND id_proyecto = '".$_POST["employee_id"]."'";  
 
 
