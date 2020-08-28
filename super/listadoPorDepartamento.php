@@ -136,7 +136,7 @@
     
     $s_idUsuario = $_SESSION["s_IdUser"];
 
-    $qry = "SELECT proyectos.id, cliente, ubicacion, nombre_proyecto, fecha_publicacion, usuarios.usuario, proyectos.activo, id_usuario_asignado, estatus
+    $qry = "SELECT proyectos.id, cliente, ubicacion, nombre_proyecto, fecha_publicacion, usuarios.usuario, proyectos.activo, id_usuario_asignado, estatus, estatus_ilustrador 
     FROM proyectos
     LEFT JOIN usuarios
     on usuarios.id = proyectos.id_usuario_asignado
@@ -178,7 +178,7 @@
                                     <?php 
                                        
                                         }
-                                        else if($row[7] != '' && $row[8] == '')
+                                        else if($row[7] != '' && $row[8] == '' || $row[9] == 1 || $row[9] == 2)
                                         {
                                     ?>
                                       <tr class="table-warning">
