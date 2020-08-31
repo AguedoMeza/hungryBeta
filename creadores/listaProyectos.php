@@ -10,7 +10,8 @@
     $s_idUsuario = $_SESSION["s_IdUser"];
     $departamento = $_SESSION["sTipoUsuario"];
 
-    $qry = "SELECT proyectos.id, proyectos.nombre_proyecto, productos.nombre, activo
+    $qry = "SELECT proyectos.id, proyectos.nombre_proyecto, productos.nombre, activo, 
+            productos.id_departamento
 FROM proyectos 
 INNER JOIN productos ON productos.id = proyectos.id_producto
 where activo = 1 
@@ -52,7 +53,7 @@ and id_usuario_asignado = '$s_idUsuario'";
                                                <a href="formulario_asignar.php?id=<?php echo $row[0] ?>"><i class="fa fa-file-archive-o fa-2x color-icono" aria-hidden="true"></i></a>
                                             </td>
                                              <?php 
-                                            if($departamento == 2)
+                                            if($row[4] == 2)
                                              {   
                                              ?>
                                             <td align="center">
