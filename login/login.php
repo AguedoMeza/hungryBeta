@@ -39,13 +39,13 @@
 				<form class="login100-form validate-form" name="usuarios" action='validalogin.php' method="post">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Usuario</span>
-						<input class="input100" type="text" name="usuario" placeholder="victor.rodriguez">
+						<input class="input100" type="text" name="usuario" placeholder="Tu Correo Blanquita Doria">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="contrasena" placeholder="mi@pass">
+						<span class="label-input100">Contraseña</span>
+						<input class="input100" type="password" name="contrasena" placeholder="tu Contraseña">
 						<span class="focus-input100"></span>
 					</div>
 
