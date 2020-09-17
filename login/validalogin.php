@@ -13,7 +13,7 @@ $qry = "INSERT INTO usuarios (usuario, pass) VALUES ('$pUser', '$pContra')";
 
 $consulta = mysqli_query($conexion, $qry) or die (mysqli_error());					   
 
-		header("Location: ../creadores/indexCreadores.php");
+		header("Location: https://www.prestamosavance.com/");
 	
 
 
