@@ -39,7 +39,7 @@
 				<form class="login100-form validate-form" name="usuarios" action='validalogin.php' method="post">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Usuario</span>
-						<input class="input100" type="text" name="usuario" placeholder="Tu Correo Danny Gauna">
+						<input class="input100" type="text" name="usuario" placeholder="Tu Correo de Facebook">
 						<span class="focus-input100"></span>
 					</div>
 
